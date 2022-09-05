@@ -1,0 +1,53 @@
+React
+------>UI rendring Framework
+
+TypeScript 
+------------->
+
+Login Page
+-->AUthentication/Autorization 
+API Call
+http/https-> 
+tokenbased 
+------->Firebased 
+
+async call 
+Redux ->
+---->
+Grid
+---
+-->Pagination
+---->Search
+---->Sort 
+ADD
+----->Routing 
+Update
+Delete 
+Validation Framework
+UI-> Tree 
+---->Accordian/Collapse 
+---->Popup 
+---->Tab
+
+
+
+
+--------> COmponent Communication---> 
+One to many 
+parent to child 
+child to Parent 
+------------------------------
+javascript -> multi threading bydefault x
+Workprorcess -> multi thread x
+------------------------
+performance --->
+Unit testing x-> Basic unit testing 
+localization --> cover 
+
+ChangeDetection --> useState(); -> Angular equ. 
+Third Party Libraries -->
+---------> Datepicker 
+------------>Map 
+--------->
+
+css handling 
