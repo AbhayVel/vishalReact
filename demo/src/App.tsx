@@ -1,26 +1,28 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Header from './components/header/Header';
+import Home from './components/home/Home';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+const App = () => {
+
+    let count = 0;
+    const clickBtn = () => {
+        count = count + 1;
+        console.log(count);
+    }
+    return (
+        <div>
+
+            <button type="button" onClick={clickBtn}  >Click</button>
+            <Header />
+            <Home count={count }></Home>
+            <Home count={count}> </Home>
+      </div>
+    
   );
 }
+
+
 
 export default App;
