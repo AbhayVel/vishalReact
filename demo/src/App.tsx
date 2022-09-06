@@ -5,29 +5,16 @@ import './assets/css/paper-dashboard.css';
 import './assets/demo/demo.css'
 import Header from './components/header/Header';
 import Home from './components/home/Home';
+import Topic from './components/topic/Topic';
+import BasePage from './components/basePage/BasePage';
 
 const App = () => {
 
-    
-    let [count , setCount] = useState(0);
-     
-    const clickBtn = () => {
-        //count=count+1;
-        setCount(count + 1);
-       
-        console.log(count);
-    }
     return (
-        <div>
-            { count }
-
-            <button type="button" onClick={clickBtn}  >Click</button>
-            <Header />
-            <Home count={count }></Home>
-            <Home count={count} data="a"> </Home>
-      </div>
-    
-  );
+        <BasePage >
+                   <Topic />
+        </BasePage>
+        )   
 }
 
 
