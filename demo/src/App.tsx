@@ -9,6 +9,7 @@ import Topic from './components/topic/Topic';
 import BasePage from './components/basePage/BasePage';
 import Subject from './components/subject/Subject';
 import Role from './components/role/Role';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const App = () => {
     const [pageName, setPageName] = useState("topic");
@@ -21,14 +22,15 @@ const App = () => {
 	}
     return (
         <BasePage >
-            <div className="main-panel">
-            <button type="button" data-name="topic"name="topic" onClick={changePageName  } >Topic</button>
-            <button type="button" data-name="role" onClick={changePageName} >Role</button>
-            <button type="button" data-name="subject" onClick={changePageName} >Subject</button>
-                </div>
-            {pageName==="topic" &&  <Topic /> }   
-            {pageName === "subject" && <Subject />}
-            {pageName === "role" && <Role />}
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Topic />}></Route>
+                    <Route path="/topic" element={<Topic />}></Route>
+                    <Route path="/subject" element={<Subject />}></Route>
+                    <Route path="/role" element={<Role />}></Route>
+                </Routes>
+            </BrowserRouter>
+           
         </BasePage>
         )   
 }
