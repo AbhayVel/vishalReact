@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\NodeExamples",
+    "\\src",
+    "\\src\\components",
+    "\\src\\components\\basePage",
+    "\\src\\components\\topic"
   ],
-  "SelectedNode": "\\package.json",
+  "SelectedNode": "\\src\\App.tsx",
   "PreviewInSolutionExplorer": false
 }

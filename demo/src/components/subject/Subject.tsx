@@ -2,7 +2,7 @@ import React from 'react';
 import SideBar from '../sideBar/SideBar';
 
 
-const Topic = (props: any) => {   
+const Subject = (props: any) => {   
    
     
     return (        
@@ -76,7 +76,7 @@ const Topic = (props: any) => {
                         <div className="col-md-12">
                             <div className="card">
                                 <div className="card-header">
-                                    <h4 className="card-title">Topic</h4>
+                                    <h4 className="card-title">Subject</h4>
                                 </div>
                                 <div className="card-body">
                                     <div className="table-responsive">
@@ -356,4 +356,4 @@ const Topic = (props: any) => {
 
 
 
-export default Topic;
+export default Subject;

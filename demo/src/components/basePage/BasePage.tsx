@@ -5,7 +5,7 @@ import SideBar from '../sideBar/SideBar';
 const BasePage = (props: any) => {   
    
     const { children } = props;
-    debugger;
+    
     return (
         <div className="wrapper ">
             <SideBar />  
