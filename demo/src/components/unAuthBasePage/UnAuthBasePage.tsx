@@ -7,18 +7,16 @@ import Subject from '../subject/Subject';
 import Topic from '../topic/Topic';
 
 
-const BasePage = (props: any) => {   
+const UnAuthBasePage = (props: any) => {   
    
-    const { children } = props;
+    
     
     return (
         <div className="wrapper ">
-            <SideBar />  
+            
             <Routes>
-                <Route path="/" element={<Topic />}></Route>
-                <Route path="/topic" element={<Topic />}></Route>
-                <Route path="/subject" element={<Subject />}></Route>
-                <Route path="/role" element={<Role />}></Route>
+                <Route path="/" element={<Login />}></Route>
+                
             </Routes>
         </div>
       
@@ -27,4 +25,4 @@ const BasePage = (props: any) => {
 
 
 
-export default BasePage;
+export default UnAuthBasePage;
