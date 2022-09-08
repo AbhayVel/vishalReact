@@ -1,10 +1,23 @@
 import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 
-const SideBar = (props: any) => {   
-   
+const SideBar = () => {   
+
+    const navigate = useNavigate();
+
+    const beforeSubjectClick = (eve: any)=>{
+        eve.preventDefault();
+
+        navigate("/subject");
+
+        return false;
+	}
     
     return (
+
+        
+          
         <div className="sidebar" data-color="white" data-active-color="danger">
             <div className="logo">
                 <a href="https://www.creative-tim.com" className="simple-text logo-mini">
@@ -21,22 +34,22 @@ const SideBar = (props: any) => {
             <div className="sidebar-wrapper">
                 <ul className="nav">
                     <li>
-                        <a href="./dashboard.html">
+                        <Link to={"/topic"}>
                             <i className="nc-icon nc-bank"></i>
-                            <p>Dashboard</p>
-                        </a>
+                            <p>Topic</p>
+                        </Link>
                     </li>
                     <li>
-                        <a href="./icons.html">
+                        <a href="/subject" onClick={beforeSubjectClick }>
                             <i className="nc-icon nc-diamond"></i>
-                            <p>Icons</p>
+                            <p>subject</p>
                         </a>
                     </li>
                     <li>
-                        <a href="./map.html">
+                        <Link to={"/role" }>
                             <i className="nc-icon nc-pin-3"></i>
-                            <p>Maps</p>
-                        </a>
+                            <p>Role</p>
+                        </Link>
                     </li>
                     <li>
                         <a href="./notifications.html">

@@ -2,7 +2,7 @@ import React from 'react';
 import SideBar from '../sideBar/SideBar';
 
 
-const Role = (props: any) => {   
+const Role = () => {   
    
     
     return (        
