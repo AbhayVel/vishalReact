@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 
-const SideBar = (props: any) => {   
+const SideBar = () => {   
 
     const navigate = useNavigate();
 

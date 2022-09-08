@@ -2,7 +2,7 @@ import React from 'react';
 import SideBar from '../sideBar/SideBar';
 
 
-const Login = (props: any) => {   
+const Login = () => {   
    
     
     return (        

@@ -7,7 +7,7 @@ import Subject from '../subject/Subject';
 import Topic from '../topic/Topic';
 
 
-const UnAuthBasePage = (props: any) => {   
+const UnAuthBasePage = () => {   
    
     
     

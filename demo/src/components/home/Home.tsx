@@ -1,14 +1,14 @@
 import React from 'react';
 
 
-const Home = (props: any) => {   //pure function    , @Input 
+const Home = () => {   //pure function    , @Input 
     debugger;
-    const { count, data } = props;
+    
     
     return (
       <div>
-            <div>{props.count}</div>
-            <div>{data}</div>
+            <div>Home</div>
+            <div>Data</div>
       </div>
       
   );

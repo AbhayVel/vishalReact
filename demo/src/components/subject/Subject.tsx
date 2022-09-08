@@ -2,7 +2,7 @@ import React from 'react';
 import SideBar from '../sideBar/SideBar';
 
 
-const Subject = (props: any) => {   
+const Subject = () => {   
    
     
     return (        
