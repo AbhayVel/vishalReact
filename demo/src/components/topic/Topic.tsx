@@ -19,6 +19,13 @@ const Topic = () => {
             question: "What is Angular",
             answer: "Angular is a UI framework for javascript."
         },
+        {
+            id: 3,
+            subject: "MVC",
+            type: "Question",
+            question: "What is Angular",
+            answer: "Angular is a UI framework for javascript."
+        },
          
 
     ]
@@ -62,30 +69,29 @@ const Topic = () => {
 	//}
 
 
-       const sortData = (columnName: any, orderBy: any) => {
+       const sortData = (columnName: any, orderBy: any, type: any) => {        
+       
         
-        debugger;
-        if (columnName == 'id') {
             if (orderBy == 'asc') {
-                data.sort((a, b) => {
-                    return a.id > b.id ? 1 : -1;
+                data.sort((a: any, b: any) => {
+                    if (type === 'cistr') {
+                        return a[columnName].toLowerCase() > b[columnName].toLowerCase() ? 1 : -1;
+                    } else {
+                        return a[columnName] > b[columnName] ? 1 : -1;
+					}
+                   
                 })
             } else {
-                data.sort((a, b) => {
-                    return a.id > b.id ? -1 : 1;
+                data.sort((a: any, b: any) => {
+                    if (type === 'cistr') {
+                        return a[columnName].toLowerCase() > b[columnName].toLowerCase() ? -1 : 1;
+                    } else {
+                        return a[columnName] > b[columnName] ? -1 : 1;
+                    }
                 })
 			}
-        } else if (columnName == 'subject') {
-            if (orderBy == 'asc') {
-                data.sort((a, b) => {
-                    return a.subject.toLowerCase() > b.subject.toLowerCase() ? 1 : -1;
-                })
-            } else {
-                data.sort((a, b) => {
-                    return a.subject.toLowerCase() > b.subject.toLowerCase() ? -1 : 1;
-                })
-            }
-        }
+          
+
 
         
         if (orderBy == 'asc') {
@@ -173,32 +179,32 @@ const Topic = () => {
                                         <table className="table">
                                             <thead className=" text-primary">
                                             <th  onClick={(eve) => {
-                                                sortData("id", config.orderBy);
+                                                sortData("id", config.orderBy, "num");
                                                 eve?.preventDefault();
                                             }
                                             }>
                                                     Id
                                                 </th>
                                             <th  onClick={(eve: any) => {
-                                                sortData("subject", config.orderBy);
+                                                sortData("subject", config.orderBy, "cistr");
                                                 eve?.preventDefault();
                                             }}>
                                                     Subject
                                                 </th>
                                             <th onClick={(eve: any) => {
-                                                sortData("type", config.orderBy);
+                                                sortData("type", config.orderBy, "cistr");
                                                 eve?.preventDefault();
                                             }}>
                                                     Type
                                                 </th>
                                             <th className="text-right" onClick={(eve: any) => {
-                                                sortData("question", config.orderBy);
+                                                sortData("question", config.orderBy, "csstr");
                                                 eve?.preventDefault();
                                             }}>
                                                     Question
                                             </th>
                                             <th className="text-right" onClick={(eve: any) => {
-                                                sortData("answer", config.orderBy);
+                                                sortData("answer", config.orderBy, "cistr");
                                                 eve?.preventDefault();
                                             }}>
                                                 Answer
