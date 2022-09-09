@@ -1,10 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\NodeExamples",
     "\\src",
     "\\src\\components",
-    "\\src\\components\\topic"
+    "\\src\\components\\header",
+    "\\src\\components\\home",
+    "\\src\\components\\login",
+    "\\src\\components\\role",
+    "\\src\\components\\sideBar",
+    "\\src\\components\\topic",
+    "\\src\\components\\unAuthBasePage"
   ],
+  "SelectedNode": "\\src\\components\\home\\Home.tsx",
   "PreviewInSolutionExplorer": false
 }
