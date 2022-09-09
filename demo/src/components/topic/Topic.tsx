@@ -23,8 +23,9 @@ const Topic = () => {
 
     ]
 
-    const [topicData, setTopicData] = useState(data);
-    const [orderBy, setOrderBY] = useState("asc");
+    // const [config, setConfig] = useState({ data: data, orderBy: "asc"   } );
+    const [config, setConfig] = useState({ data, orderBy: "asc"   } );
+  //  const [orderBy, setOrderBY] = useState("asc");
  //   const sortData = (eve: any) => {
  //       const columnName: any = eve.target.getAttribute("data-columnName");
 
@@ -86,11 +87,11 @@ const Topic = () => {
             }
         }
 
-        setTopicData([...data])
+        
         if (orderBy == 'asc') {
-            setOrderBY("desc");
+            setConfig({ data: [...data], orderBy: "desc" });
         } else {
-            setOrderBY("asc");
+            setConfig({ data: [...data], orderBy: "asc" });
         }
 	}
     
@@ -172,32 +173,41 @@ const Topic = () => {
                                         <table className="table">
                                             <thead className=" text-primary">
                                             <th  onClick={(eve) => {
-                                                sortData("id", orderBy);
+                                                sortData("id", config.orderBy);
                                                 eve?.preventDefault();
                                             }
                                             }>
                                                     Id
                                                 </th>
                                             <th  onClick={(eve: any) => {
-                                                sortData("subject", orderBy);
+                                                sortData("subject", config.orderBy);
                                                 eve?.preventDefault();
                                             }}>
                                                     Subject
                                                 </th>
-                                                <th>
+                                            <th onClick={(eve: any) => {
+                                                sortData("type", config.orderBy);
+                                                eve?.preventDefault();
+                                            }}>
                                                     Type
                                                 </th>
-                                                <th className="text-right">
+                                            <th className="text-right" onClick={(eve: any) => {
+                                                sortData("question", config.orderBy);
+                                                eve?.preventDefault();
+                                            }}>
                                                     Question
                                             </th>
-                                            <th className="text-right">
+                                            <th className="text-right" onClick={(eve: any) => {
+                                                sortData("answer", config.orderBy);
+                                                eve?.preventDefault();
+                                            }}>
                                                 Answer
                                             </th>
                                             </thead>
                                         <tbody>
 
                                             {
-                                                topicData.map((e: any) => {
+                                                config.data.map((e: any) => {
                                                     return (
                                                         <tr key={e.id}>
                                                             <td>
