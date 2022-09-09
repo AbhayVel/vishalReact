@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SideBar from '../sideBar/SideBar';
 
 
@@ -19,10 +19,87 @@ const Topic = () => {
             question: "What is Angular",
             answer: "Angular is a UI framework for javascript."
         },
+        {
+            id: 3,
+            subject: "MVC",
+            type: "Question",
+            question: "What is Angular",
+            answer: "Angular is a UI framework for javascript."
+        },
          
 
     ]
 
+    // const [config, setConfig] = useState({ data: data, orderBy: "asc"   } );
+    const [config, setConfig] = useState({ data, orderBy: "asc"   } );
+  //  const [orderBy, setOrderBY] = useState("asc");
+ //   const sortData = (eve: any) => {
+ //       const columnName: any = eve.target.getAttribute("data-columnName");
+
+ //       const orderBy: any = eve.target.getAttribute("data-orderBy");
+ //       debugger;
+ //       if (columnName == 'id') {
+ //           if (orderBy == 'asc') {
+ //               data.sort((a, b) => {
+ //                   return a.id > b.id ? 1 : -1;
+ //               })
+ //           } else {
+ //               data.sort((a, b) => {
+ //                   return a.id > b.id ? 1 : -1;
+ //               })
+	//		}
+ //       } else if (columnName == 'subject') {
+ //           if (orderBy == 'asc') {
+ //               data.sort((a, b) => {
+ //                   return a.subject.toLowerCase() > b.subject.toLowerCase() ? 1 : -1;
+ //               })
+ //           } else {
+ //               data.sort((a, b) => {
+ //                   return a.subject.toLowerCase() > b.subject.toLowerCase() ? 1 : -1;
+ //               })
+ //           }
+ //       }
+
+ //       setTopicData([...data])
+ //       if (orderBy == 'asc') {
+ //           setOrderBY("desc");
+ //       } else {
+ //           setOrderBY("asc");
+ //       }
+	//}
+
+
+       const sortData = (columnName: any, orderBy: any, type: any) => {        
+       
+        
+            if (orderBy == 'asc') {
+                data.sort((a: any, b: any) => {
+                    if (type === 'cistr') {
+                        return a[columnName].toLowerCase() > b[columnName].toLowerCase() ? 1 : -1;
+                    } else {
+                        return a[columnName] > b[columnName] ? 1 : -1;
+					}
+                   
+                })
+            } else {
+                data.sort((a: any, b: any) => {
+                    if (type === 'cistr') {
+                        return a[columnName].toLowerCase() > b[columnName].toLowerCase() ? -1 : 1;
+                    } else {
+                        return a[columnName] > b[columnName] ? -1 : 1;
+                    }
+                })
+			}
+          
+
+
+        
+        if (orderBy == 'asc') {
+            setConfig({ data: [...data], orderBy: "desc" });
+        } else {
+            setConfig({ data: [...data], orderBy: "asc" });
+        }
+	}
     
     return (        
             <div className="main-panel">
@@ -101,26 +178,42 @@ const Topic = () => {
                                     <div className="table-responsive">
                                         <table className="table">
                                             <thead className=" text-primary">
-                                                <th>
+                                            <th  onClick={(eve) => {
+                                                sortData("id", config.orderBy, "num");
+                                                eve?.preventDefault();
+                                            }
+                                            }>
                                                     Id
                                                 </th>
-                                                <th>
+                                            <th  onClick={(eve: any) => {
+                                                sortData("subject", config.orderBy, "cistr");
+                                                eve?.preventDefault();
+                                            }}>
                                                     Subject
                                                 </th>
-                                                <th>
+                                            <th onClick={(eve: any) => {
+                                                sortData("type", config.orderBy, "cistr");
+                                                eve?.preventDefault();
+                                            }}>
                                                     Type
                                                 </th>
-                                                <th className="text-right">
+                                            <th className="text-right" onClick={(eve: any) => {
+                                                sortData("question", config.orderBy, "csstr");
+                                                eve?.preventDefault();
+                                            }}>
                                                     Question
                                             </th>
-                                            <th className="text-right">
+                                            <th className="text-right" onClick={(eve: any) => {
+                                                sortData("answer", config.orderBy, "cistr");
+                                                eve?.preventDefault();
+                                            }}>
                                                 Answer
                                             </th>
                                             </thead>
                                         <tbody>
 
                                             {
-                                                data.map((e: any) => {
+                                                config.data.map((e: any) => {
                                                     return (
                                                         <tr key={e.id}>
                                                             <td>
