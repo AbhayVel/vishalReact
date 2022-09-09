@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SideBar from '../sideBar/SideBar';
 
 
@@ -23,6 +23,76 @@ const Topic = () => {
 
     ]
 
+    const [topicData, setTopicData] = useState(data);
+    const [orderBy, setOrderBY] = useState("asc");
+ //   const sortData = (eve: any) => {
+ //       const columnName: any = eve.target.getAttribute("data-columnName");
+
+ //       const orderBy: any = eve.target.getAttribute("data-orderBy");
+ //       debugger;
+ //       if (columnName == 'id') {
+ //           if (orderBy == 'asc') {
+ //               data.sort((a, b) => {
+ //                   return a.id > b.id ? 1 : -1;
+ //               })
+ //           } else {
+ //               data.sort((a, b) => {
+ //                   return a.id > b.id ? 1 : -1;
+ //               })
+	//		}
+ //       } else if (columnName == 'subject') {
+ //           if (orderBy == 'asc') {
+ //               data.sort((a, b) => {
+ //                   return a.subject.toLowerCase() > b.subject.toLowerCase() ? 1 : -1;
+ //               })
+ //           } else {
+ //               data.sort((a, b) => {
+ //                   return a.subject.toLowerCase() > b.subject.toLowerCase() ? 1 : -1;
+ //               })
+ //           }
+ //       }
+
+ //       setTopicData([...data])
+ //       if (orderBy == 'asc') {
+ //           setOrderBY("desc");
+ //       } else {
+ //           setOrderBY("asc");
+ //       }
+	//}
+
+
+       const sortData = (columnName: any, orderBy: any) => {
+        
+        debugger;
+        if (columnName == 'id') {
+            if (orderBy == 'asc') {
+                data.sort((a, b) => {
+                    return a.id > b.id ? 1 : -1;
+                })
+            } else {
+                data.sort((a, b) => {
+                    return a.id > b.id ? -1 : 1;
+                })
+			}
+        } else if (columnName == 'subject') {
+            if (orderBy == 'asc') {
+                data.sort((a, b) => {
+                    return a.subject.toLowerCase() > b.subject.toLowerCase() ? 1 : -1;
+                })
+            } else {
+                data.sort((a, b) => {
+                    return a.subject.toLowerCase() > b.subject.toLowerCase() ? -1 : 1;
+                })
+            }
+        }
+
+        setTopicData([...data])
+        if (orderBy == 'asc') {
+            setOrderBY("desc");
+        } else {
+            setOrderBY("asc");
+        }
+	}
     
     return (        
             <div className="main-panel">
@@ -101,10 +171,17 @@ const Topic = () => {
                                     <div className="table-responsive">
                                         <table className="table">
                                             <thead className=" text-primary">
-                                                <th>
+                                            <th  onClick={(eve) => {
+                                                sortData("id", orderBy);
+                                                eve?.preventDefault();
+                                            }
+                                            }>
                                                     Id
                                                 </th>
-                                                <th>
+                                            <th  onClick={(eve: any) => {
+                                                sortData("subject", orderBy);
+                                                eve?.preventDefault();
+                                            }}>
                                                     Subject
                                                 </th>
                                                 <th>
@@ -120,7 +197,7 @@ const Topic = () => {
                                         <tbody>
 
                                             {
-                                                data.map((e: any) => {
+                                                topicData.map((e: any) => {
                                                     return (
                                                         <tr key={e.id}>
                                                             <td>
