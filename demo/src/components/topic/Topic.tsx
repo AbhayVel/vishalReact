@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import QdnThead from '../../library/thead/Thead';
 import SideBar from '../sideBar/SideBar';
 
 
@@ -30,77 +31,56 @@ const Topic = () => {
 
     ]
 
+    const tableConfig = [
+        {
+            id: 1,
+            columnName: "id",
+            columnType: "num",
+            displayName: "Id",
+            isSortable: true,
+            className:''
+        },
+        {
+            id: 2,
+            columnName: "subject",
+            columnType: "cistr",
+            displayName: "Subject",
+            isSortable: true,
+            className: ''
+        },
+        {
+            id: 3,
+            columnName: "type",
+            columnType: "cistr",
+            displayName: "Type",
+            isSortable: true,
+            className: ''
+        },
+        {
+            id: 4,
+            columnName: "question",
+            columnType: "cistr",
+            displayName: "Question",
+            isSortable: false,
+            className: 'text-right'
+        },
+        {
+            id: 5,
+            columnName: "answer",
+            columnType: "cistr",
+            displayName: "Answer",
+            isSortable: false,
+            className: 'text-right'
+        }
+    
+    ]
+
+    const sortData = (a: any, b: any, c: any) => {
+        debugger;
+
+	}
     // const [config, setConfig] = useState({ data: data, orderBy: "asc"   } );
     const [config, setConfig] = useState({ data, orderBy: "asc"   } );
-  //  const [orderBy, setOrderBY] = useState("asc");
- //   const sortData = (eve: any) => {
- //       const columnName: any = eve.target.getAttribute("data-columnName");
-
- //       const orderBy: any = eve.target.getAttribute("data-orderBy");
- //       debugger;
- //       if (columnName == 'id') {
- //           if (orderBy == 'asc') {
- //               data.sort((a, b) => {
- //                   return a.id > b.id ? 1 : -1;
- //               })
- //           } else {
- //               data.sort((a, b) => {
- //                   return a.id > b.id ? 1 : -1;
- //               })
-	//		}
- //       } else if (columnName == 'subject') {
- //           if (orderBy == 'asc') {
- //               data.sort((a, b) => {
- //                   return a.subject.toLowerCase() > b.subject.toLowerCase() ? 1 : -1;
- //               })
- //           } else {
- //               data.sort((a, b) => {
- //                   return a.subject.toLowerCase() > b.subject.toLowerCase() ? 1 : -1;
- //               })
- //           }
- //       }
-
- //       setTopicData([...data])
- //       if (orderBy == 'asc') {
- //           setOrderBY("desc");
- //       } else {
- //           setOrderBY("asc");
- //       }
-	//}
-
-
-       const sortData = (columnName: any, orderBy: any, type: any) => {        
-       
-        
-            if (orderBy == 'asc') {
-                data.sort((a: any, b: any) => {
-                    if (type === 'cistr') {
-                        return a[columnName].toLowerCase() > b[columnName].toLowerCase() ? 1 : -1;
-                    } else {
-                        return a[columnName] > b[columnName] ? 1 : -1;
-					}
-                   
-                })
-            } else {
-                data.sort((a: any, b: any) => {
-                    if (type === 'cistr') {
-                        return a[columnName].toLowerCase() > b[columnName].toLowerCase() ? -1 : 1;
-                    } else {
-                        return a[columnName] > b[columnName] ? -1 : 1;
-                    }
-                })
-			}
-          
-
-
-        
-        if (orderBy == 'asc') {
-            setConfig({ data: [...data], orderBy: "desc" });
-        } else {
-            setConfig({ data: [...data], orderBy: "asc" });
-        }
-	}
-    
     return (        
             <div className="main-panel">
               
@@ -176,40 +156,9 @@ const Topic = () => {
                                 </div>
                                 <div className="card-body">
                                     <div className="table-responsive">
-                                        <table className="table">
-                                            <thead className=" text-primary">
-                                            <th  onClick={(eve) => {
-                                                sortData("id", config.orderBy, "num");
-                                                eve?.preventDefault();
-                                            }
-                                            }>
-                                                    Id
-                                                </th>
-                                            <th  onClick={(eve: any) => {
-                                                sortData("subject", config.orderBy, "cistr");
-                                                eve?.preventDefault();
-                                            }}>
-                                                    Subject
-                                                </th>
-                                            <th onClick={(eve: any) => {
-                                                sortData("type", config.orderBy, "cistr");
-                                                eve?.preventDefault();
-                                            }}>
-                                                    Type
-                                                </th>
-                                            <th className="text-right" onClick={(eve: any) => {
-                                                sortData("question", config.orderBy, "csstr");
-                                                eve?.preventDefault();
-                                            }}>
-                                                    Question
-                                            </th>
-                                            <th className="text-right" onClick={(eve: any) => {
-                                                sortData("answer", config.orderBy, "cistr");
-                                                eve?.preventDefault();
-                                            }}>
-                                                Answer
-                                            </th>
-                                            </thead>
+                                    <table className="table">
+
+                                        <QdnThead tableConfig={tableConfig} config={config} setConfig={setConfig} sortData={sortData }  /> 
                                         <tbody>
 
                                             {
