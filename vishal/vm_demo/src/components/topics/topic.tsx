@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { visitEachChild } from "typescript";
+import GridHeader from "../../library/components/gridHeader/GridHeader";
 import Footer from "../footer/Footer";
 import SideBar from "../sideBar/SideBar";
 
@@ -38,7 +39,7 @@ const Topic = (props: any) => {
 
   const [tableConfig, setTableConfig] = useState({ data: tableData, currentSort: SORT_ASC });
 
-  const columnHeaderClick = (tableHeader: TableHeader) => {
+  /* const columnHeaderClick = (tableHeader: TableHeader) => {
     if (!tableHeader.allowSorting) {
       return;
     }
@@ -53,7 +54,7 @@ const Topic = (props: any) => {
     });
 
     setTableConfig({ data: [...tableData], currentSort: currentSort });
-  }
+  } */
 
   return (
 
@@ -131,20 +132,7 @@ const Topic = (props: any) => {
                 <div className="card-body">
                   <div className="table-responsive">
                     <table className="table">
-                      <thead className=" text-primary">
-                        {
-                          tableHeader.map((e: TableHeader) => {
-                            return (
-                              <th onClick={() => {
-                                columnHeaderClick(e);
-                              }}>
-                                {e.caption}
-                              </th>
-                            )
-                          })
-                        }
-                      </thead>
-
+                      <GridHeader tableHeader={tableHeader} tableConfig={tableConfig} setTableConfig={setTableConfig} />
                       <tbody>
 
                         {
