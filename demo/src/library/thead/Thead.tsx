@@ -1,37 +1,60 @@
 import React from 'react';
 
+export const QdnTh = (props: any) => {
+    const { name, children } = props;
+   
+    return (
+        <>
+            {children }
+        </>
+    );
+}
+
+const GetChild = (props: any) => {
+    const { te, childP } = props;
+    debugger;
+    let child = childP[0];
+    childP.forEach((e: any) => {
+        if (te.customDisplaySort == e.props.name) {
+            child = e;
+        }
+    })
+    return (
+     <>
+        { child }
+     </>
+    )
+}
 
 const QdnThead = (props: any) => {   //pure function    , @Input 
     
-    const { tableConfig, config, sortData, setConfig } = props;
+    const { tableConfig, config, sortData, setConfig, children } = props;
+
+    debugger;
 
     const sortDataThead = (columnName: any, orderBy: any, type: any, te: any) => {
-        if (!te.isSortble) {
+        debugger;
+        if (!te.isSortable) {
             return;
 		}
         if (sortData) {
             sortData(columnName, orderBy, type);
         } else {
 
-                     if (orderBy == 'asc') {
-                config.data.sort((a: any, b: any) => {
-                    if (type === 'cistr') {
-                        return a[columnName].toLowerCase() > b[columnName].toLowerCase() ? 1 : -1;
-                    } else {
-                        return a[columnName] > b[columnName] ? 1 : -1;
-					}
+            debugger;
+            let sortOption = -1;
+            if (orderBy == 'asc') {
+                sortOption = 1;
+            }
 
-                })
-            } else {
-                         config.data.sort((a: any, b: any) => {
-                    if (type === 'cistr') {
-                        return a[columnName].toLowerCase() > b[columnName].toLowerCase() ? -1 : 1;
-                    } else {
-                        return a[columnName] > b[columnName] ? -1 : 1;
-                    }
-                })
-			}
+            config.data.sort((a: any, b: any) => {
+                if (type === 'cistr') {
+                    return a[columnName].toLowerCase() > b[columnName].toLowerCase() ? sortOption : -1 * sortOption;
+                }
 
+                return a[columnName] > b[columnName] ? sortOption : -1 * sortOption;
+            });
+        }
 
 
 
@@ -40,7 +63,7 @@ const QdnThead = (props: any) => {   //pure function    , @Input
         } else {
             setConfig({ data: [...config.data], orderBy: "asc" });
         }
-		}
+		
 	}
     return (
         <thead className=" text-primary">
@@ -54,7 +77,9 @@ const QdnThead = (props: any) => {   //pure function    , @Input
                                 eve?.preventDefault();
                             }
                             }>
-                                {te.displayName}
+                                {!te.customDisplaySort && te.displayName}
+
+                                {te.customDisplaySort != undefined && <GetChild te={te} childP={children} /> }
                             </th>
                         </>
 

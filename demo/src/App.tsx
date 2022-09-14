@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './assets/css/bootstrap.min.css';
 import './assets/css/paper-dashboard.css';
 import './assets/demo/demo.css'
+import './App.css'
 import BasePage from './components/basePage/BasePage';
 import { BrowserRouter} from 'react-router-dom';
 import UnAuthBasePage from './components/unAuthBasePage/UnAuthBasePage';

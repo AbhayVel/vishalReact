@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import QdnThead from '../../library/thead/Thead';
+import QdnThead, { QdnTh } from '../../library/thead/Thead';
 import SideBar from '../sideBar/SideBar';
 
 
@@ -8,22 +8,22 @@ const Topic = () => {
     const data = [
         {
             id: 1,
-            subject: "react",
+            subjectId: 1,
             type:"Question",
             question: "What is react",
             answer:"React is a UI rendring library available for javascript."
         },
         {
             id: 2,
-            subject: "anglur",
+            subjectId: 2,
             type: "Question",
             question: "What is Angular",
             answer: "Angular is a UI framework for javascript."
         },
         {
             id: 3,
-            subject: "MVC",
-            type: "Question",
+            subjectId: 3,
+            type: "Topic",
             question: "What is Angular",
             answer: "Angular is a UI framework for javascript."
         },
@@ -42,8 +42,8 @@ const Topic = () => {
         },
         {
             id: 2,
-            columnName: "subject",
-            columnType: "cistr",
+            columnName: "subjectId",
+            columnType: "num",
             displayName: "Subject",
             isSortable: true,
             className: ''
@@ -61,7 +61,8 @@ const Topic = () => {
             columnName: "question",
             columnType: "cistr",
             displayName: "Question",
-            isSortable: false,
+            customDisplaySort: "question",
+            isSortable: true,
             className: 'text-right'
         },
         {
@@ -69,6 +70,7 @@ const Topic = () => {
             columnName: "answer",
             columnType: "cistr",
             displayName: "Answer",
+            customDisplaySort: "answer",
             isSortable: false,
             className: 'text-right'
         }
@@ -158,7 +160,14 @@ const Topic = () => {
                                     <div className="table-responsive">
                                     <table className="table">
 
-                                        <QdnThead tableConfig={tableConfig} config={config} setConfig={setConfig} sortData={sortData }  /> 
+                                        <QdnThead tableConfig={tableConfig} config={config} setConfig={setConfig} > 
+                                            <QdnTh name="question">
+                                                <span className="red"> data Question</span>
+                                            </QdnTh>
+                                            <QdnTh name="answer">
+                                                <span> data Answer</span>
+                                             </QdnTh>
+                                        </QdnThead>
                                         <tbody>
 
                                             {
@@ -169,7 +178,7 @@ const Topic = () => {
                                                                 {e.id}
                                                             </td>
                                                             <td>
-                                                                {e.subject}
+                                                                {e.subjectId}
                                                             </td>
                                                             <td>
                                                                 {e.type}
