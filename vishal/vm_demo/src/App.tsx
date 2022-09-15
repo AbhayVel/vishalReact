@@ -13,6 +13,7 @@ import {
   Routes,
   Route,
 } from 'react-router-dom'
+import SideBar from './components/sideBar/SideBar';
 function App() {
 
   let [count, setCount] = useState(0);
@@ -35,6 +36,7 @@ function App() {
     // </div>
     <BasePage>
       <BrowserRouter>
+        <SideBar />
         <Routes>
           <Route path='/' element={<Topic />}></Route>
           <Route path='/Topic' element={<Topic />}></Route>
