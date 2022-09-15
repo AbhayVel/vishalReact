@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { visitEachChild } from "typescript";
-import GridHeader from "../../library/components/gridHeader/GridHeader";
+import GridHeader, { GridHeaderPragment, TableHeader } from "../../library/components/gridHeader/GridHeader";
 import Footer from "../footer/Footer";
 import SideBar from "../sideBar/SideBar";
 
@@ -13,14 +13,7 @@ interface Student {
   contactNo: string;
 }
 
-interface TableHeader {
-  columnId: string,
-  caption: string,
-  allowSorting: boolean,
-  columnType?: string,
-  customCaption?: String,
-  image?: any
-}
+
 const CASE_SENSETIVE_STRING = "CaseSensitiveString";
 const SORT_ASC = 1;
 const SORT_DESC = -1;
@@ -35,7 +28,7 @@ const Topic = (props: any) => {
   { columnId: "firstName", caption: "First Name", allowSorting: true, columnType: CASE_SENSETIVE_STRING },
   { columnId: "lastName", caption: "Last Name", allowSorting: true, customCaption: "", image: "" },
   { columnId: "city", caption: "City", allowSorting: true },
-  { columnId: "contactNo", caption: "Contact No", allowSorting: false }];
+  { columnId: "contactNo", caption: "Contact No", allowSorting: false, customCaption: "CUSTOM_CAPTION" }];
 
   const [tableConfig, setTableConfig] = useState({ data: tableData, currentSort: SORT_ASC });
 
@@ -132,7 +125,16 @@ const Topic = (props: any) => {
                 <div className="card-body">
                   <div className="table-responsive">
                     <table className="table">
-                      <GridHeader tableHeader={tableHeader} tableConfig={tableConfig} setTableConfig={setTableConfig} />
+                      <GridHeader tableHeader={tableHeader} tableConfig={tableConfig} setTableConfig={setTableConfig} >
+                        <GridHeaderPragment forColumn="test">
+                          <div className="logo-image-small">
+                            <img src="../../assets/img/logo-small.png" />
+                          </div>
+                        </GridHeaderPragment>
+                        <GridHeaderPragment>
+                          <div>Moharikar</div>
+                        </GridHeaderPragment>
+                      </GridHeader>
                       <tbody>
 
                         {

@@ -8,13 +8,25 @@ export interface TableHeader {
     image?: any
 }
 const CASE_SENSETIVE_STRING = "CaseSensitiveString";
-const SORT_ASC = 1;
-const SORT_DESC = -1;
 
+export const GridHeaderPragment = (props: any) => {
+    const { name } = props;
+    return (
+        <>
+        </>
+    );
+}
 const GridHeader = (props: any) => {
-    const { tableHeader, tableConfig, setTableConfig } = props;
+    const { tableHeader, tableConfig, setTableConfig, children } = props;
 
-
+    const getChild = (header: TableHeader) => {
+        if (header.customCaption) {
+            debugger;
+            return (children[0].props.children)
+        } else {
+            return header.caption
+        }
+    }
     const columnHeaderClick = (header: TableHeader) => {
         debugger;
         if (!header.allowSorting) {
@@ -40,7 +52,7 @@ const GridHeader = (props: any) => {
                         <th onClick={() => {
                             columnHeaderClick(e);
                         }}>
-                            {e.caption}
+                            {getChild(e)}
                         </th>
                     )
                 })
