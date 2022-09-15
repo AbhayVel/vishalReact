@@ -2,7 +2,7 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\components\\home",
+    "\\src\\assets",
     "\\src\\components\\login",
     "\\src\\components\\role",
     "\\src\\components\\sideBar",
@@ -11,6 +11,6 @@
     "\\src\\library",
     "\\src\\library\\thead"
   ],
-  "SelectedNode": "\\src\\library\\thead\\Thead.tsx",
+  "SelectedNode": "\\src\\App.css",
   "PreviewInSolutionExplorer": false
 }

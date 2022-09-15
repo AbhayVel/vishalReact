@@ -162,7 +162,7 @@ const Topic = () => {
 
                                         <QdnThead tableConfig={tableConfig} config={config} setConfig={setConfig} > 
                                             <QdnTh name="question">
-                                                <span className="red"> data Question</span>
+                                                <p className="red"> data Question</p>
                                             </QdnTh>
                                             <QdnTh name="answer">
                                                 <span> data Answer</span>
