@@ -10,7 +10,7 @@ import Topic from '../topic/Topic';
 const BasePage = (props: any) => {   
    
     const { children } = props;
-    
+    debugger;
     return (
         <div className="wrapper ">
             <SideBar />  
