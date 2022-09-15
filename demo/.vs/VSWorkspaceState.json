@@ -2,15 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\components",
-    "\\src\\components\\header",
     "\\src\\components\\home",
     "\\src\\components\\login",
     "\\src\\components\\role",
     "\\src\\components\\sideBar",
     "\\src\\components\\topic",
-    "\\src\\components\\unAuthBasePage"
+    "\\src\\components\\unAuthBasePage",
+    "\\src\\library",
+    "\\src\\library\\thead"
   ],
-  "SelectedNode": "\\src\\components\\home\\Home.tsx",
+  "SelectedNode": "\\src\\library\\thead\\Thead.tsx",
   "PreviewInSolutionExplorer": false
 }
