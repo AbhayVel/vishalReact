@@ -1,4 +1,6 @@
+import { log } from 'console';
 import React, { useState } from 'react';
+import logo from '../../assets/img/logo-small.png';
 import QdnThead, { QdnTh } from '../../library/thead/Thead';
 import SubjectMaster from '../../master-component/subject/SubjectMaster';
 import { getValue } from '../../util/Util';
@@ -103,7 +105,9 @@ const Topic = () => {
     const sortData = (a: any, b: any, c: any) => {
         
 
-	}
+    }
+
+    const path = "/assets/img/logo-small.png";
     // const [config, setConfig] = useState({ data: data, orderBy: "asc"   } );
     const [config, setConfig] = useState({ data, orderBy: "asc"   } );
     return (        
@@ -222,7 +226,10 @@ const Topic = () => {
 
                                      
                                             </tbody>
-                                        </table>
+                                    </table>
+                                    <img src={logo} alt="logo" />
+
+                                    <img src={path}  alt="logo" />
                                     </div>
                                 </div>
                             </div>
