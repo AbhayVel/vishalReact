@@ -12,7 +12,7 @@ export const QdnTh = (props: any) => {
 
 const GetChild = (props: any) => {
     const { te, childP } = props;
-    debugger;
+    
     let child = childP[0];
     childP.forEach((e: any) => {
         if (te.customDisplaySort == e.props.name) {
@@ -30,10 +30,10 @@ const QdnThead = (props: any) => {   //pure function    , @Input
     
     const { tableConfig, config, sortData, setConfig, children } = props;
 
-    debugger;
+    
 
     const sortDataThead = (columnName: any, orderBy: any, type: any, te: any) => {
-        debugger;
+        
         if (!te.isSortable) {
             return;
 		}
@@ -41,13 +41,20 @@ const QdnThead = (props: any) => {   //pure function    , @Input
             sortData(columnName, orderBy, type);
         } else {
 
-            debugger;
+            
             let sortOption = -1;
             if (orderBy == 'asc') {
                 sortOption = 1;
             }
 
+           
+
             config.data.sort((a: any, b: any) => {
+
+                debugger;
+                if (te.customSort) {
+                    return te.customSort(a, b, sortOption);
+                }
                 if (type === 'cistr') {
                     return a[columnName].toLowerCase() > b[columnName].toLowerCase() ? sortOption : -1 * sortOption;
                 }

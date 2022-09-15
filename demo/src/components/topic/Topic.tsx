@@ -1,9 +1,27 @@
 import React, { useState } from 'react';
 import QdnThead, { QdnTh } from '../../library/thead/Thead';
+import SubjectMaster from '../../master-component/subject/SubjectMaster';
+import { getValue } from '../../util/Util';
 import SideBar from '../sideBar/SideBar';
 
 
-const Topic = () => {   
+const Topic = () => {  
+    const subjectMaster = [
+        {
+            subjectId: 1,
+            subjectName: "MVC"
+        },
+        {
+            subjectId: 2,
+            subjectName: "Angular"
+        },
+        {
+            subjectId: 3,
+            subjectName: "React"
+        }
+    ]
+
+    
 
     const data = [
         {
@@ -46,7 +64,12 @@ const Topic = () => {
             columnType: "num",
             displayName: "Subject",
             isSortable: true,
-            className: ''
+            className: '',
+            customSort: (a: any, b: any, orderBy: any) => {
+                const subjectIdNameA = getValue(subjectMaster, "subjectId", "subjectName", a.subjectId, "");
+                const subjectIdNameB = getValue(subjectMaster, "subjectId", "subjectName", b.subjectId, "");
+                return subjectIdNameA > subjectIdNameB ? orderBy : orderBy * -1;
+			}
         },
         {
             id: 3,
@@ -78,7 +101,7 @@ const Topic = () => {
     ]
 
     const sortData = (a: any, b: any, c: any) => {
-        debugger;
+        
 
 	}
     // const [config, setConfig] = useState({ data: data, orderBy: "asc"   } );
@@ -178,7 +201,7 @@ const Topic = () => {
                                                                 {e.id}
                                                             </td>
                                                             <td>
-                                                                {e.subjectId}
+                                                                <SubjectMaster id={e.id } defaultValue='na' />
                                                             </td>
                                                             <td>
                                                                 {e.type}
