@@ -45,18 +45,82 @@ const Topic = () => {
             question: "What is Angular",
             answer: "Angular is a UI framework for javascript."
         },
-
+        {
+            id: 4,
+            subjectId: 3,
+            type: "Topic",
+            question: "What is Angular",
+            answer: "Angular is a UI framework for javascript."
+        },
+        {
+            id: 5,
+            subjectId: 3,
+            type: "Topic",
+            question: "What is Angular",
+            answer: "Angular is a UI framework for javascript."
+        },
+        {
+            id: 6,
+            subjectId: 3,
+            type: "Topic",
+            question: "What is Angular",
+            answer: "Angular is a UI framework for javascript."
+        },
+        {
+            id: 7,
+            subjectId: 3,
+            type: "Topic",
+            question: "What is Angular",
+            answer: "Angular is a UI framework for javascript."
+        },
+        {
+            id: 8,
+            subjectId: 3,
+            type: "Topic",
+            question: "What is Angular",
+            answer: "Angular is a UI framework for javascript."
+        },
+        {
+            id: 9,
+            subjectId: 3,
+            type: "Topic",
+            question: "What is Angular",
+            answer: "Angular is a UI framework for javascript."
+        },
+        {
+            id: 10,
+            subjectId: 3,
+            type: "Topic",
+            question: "What is Angular",
+            answer: "Angular is a UI framework for javascript."
+        },
 
     ]
 
-    const tableConfig = [
+    const tableConfig = {
+     isFilter: true,
+     columnConfig:   [
         {
             id: 1,
             columnName: "id",
             columnType: "num",
             displayName: "Id",
             isSortable: true,
-            className: ''
+             className: '',
+             filter: [{
+                 fid: 1,
+                 value: '',
+                 columnType: "num"
+             },
+                 {
+                     fid: 2,
+                     value: '',
+                     columnType: "num"
+                 }
+
+
+            ]
+
         },
         {
             id: 2,
@@ -69,7 +133,8 @@ const Topic = () => {
                 const subjectIdNameA = getValue(subjectMaster, "subjectId", "subjectName", a.subjectId, "");
                 const subjectIdNameB = getValue(subjectMaster, "subjectId", "subjectName", b.subjectId, "");
                 return subjectIdNameA > subjectIdNameB ? orderBy : orderBy * -1;
-            }
+            },
+           
         },
         {
             id: 3,
@@ -77,7 +142,13 @@ const Topic = () => {
             columnType: "cistr",
             displayName: "Type",
             isSortable: true,
-            className: ''
+            className: '',
+            filter: [{
+                fid: 3,
+                value: '',
+                columnType: "num"
+            }
+            ]
         },
         {
             id: 4,
@@ -86,7 +157,13 @@ const Topic = () => {
             displayName: "Question",
             customDisplaySort: "question",
             isSortable: true,
-            className: 'text-right'
+            className: 'text-right',
+            filter: [{
+                fid: 4,
+                value: '',
+                columnType: "num"
+            }
+            ]
         },
         {
             id: 5,
@@ -95,10 +172,17 @@ const Topic = () => {
             displayName: "Answer",
             customDisplaySort: "answer",
             isSortable: false,
-            className: 'text-right'
+            className: 'text-right',
+            filter: [{
+                fid: 5,
+                value: '',
+                columnType: "num"
+            }
+            ]
         }
 
-    ]
+        ]
+        }
 
     const sortData = (a: any, b: any, c: any) => {
 
@@ -182,6 +266,9 @@ const Topic = () => {
                                 <h4 className="card-title">Topic</h4>
                             </div>
                             <div className="card-body">
+                                Id  <input type="text" />
+                                <br />
+                                Subject  <input type="text" />
                                 <div className="table-responsive">
                                     <table className="table">
 
@@ -192,7 +279,7 @@ const Topic = () => {
                                             <QdnTh name="answer">
                                                 <span> data Answer</span>
                                             </QdnTh>
-                                        </QdnThead>
+                                        </QdnThead>                                        
                                         <tbody>
 
                                             {

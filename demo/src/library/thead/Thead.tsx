@@ -31,6 +31,10 @@ const QdnThead = (props: any) => {   //pure function    , @Input
     const { tableConfig, config, sortData, setConfig, children } = props;
 
 
+    const filterDataThead = (columnName: any, value: any, type: any, te: any, f: any) => {
+        console.log(value);
+    }
+
 
     const sortDataThead = (columnName: any, orderBy: any, type: any, te: any) => {
 
@@ -49,9 +53,7 @@ const QdnThead = (props: any) => {   //pure function    , @Input
 
 
 
-            config.data.sort((a: any, b: any) => {
-
-                debugger;
+            config.data.sort((a: any, b: any) => {              
                 if (te.customSort) {
                     return te.customSort(a, b, sortOption);
                 }
@@ -74,12 +76,12 @@ const QdnThead = (props: any) => {   //pure function    , @Input
     }
     return (
         <thead className=" text-primary">
-
+                <tr>
             {
-                tableConfig.map((te: any) => {
+                tableConfig.columnConfig.map((te: any) => {
                     return (
                         <>
-                            <th className={te.className} onClick={(eve) => {
+                            <th key={ te.id} className={te.className} onClick={(eve) => {
                                 sortDataThead(te.columnName, config.orderBy, te.columnType, te);
                                 eve?.preventDefault();
                             }
@@ -93,7 +95,37 @@ const QdnThead = (props: any) => {   //pure function    , @Input
                     )
                 })
             }
+            </tr>
+            {
+                tableConfig.isFilter  && <tr>
+                {
+                    tableConfig.columnConfig.map((te: any) => {
+                        return (
+                            <>
+                                <th key={ te.id} className={te.className}>
 
+                                    {
+                                        te.filter &&    te.filter.map((f: any) => {
+                                           return (
+                                               <input key={te.fid} type="text" onChange={(eve: any) => {
+                                                    filterDataThead(te.columnName, eve.target.value, te.columnType, te,f);
+                                                    eve?.preventDefault();
+                                                }
+                                                } />
+                                            
+                                            )
+										})
+									}
+                                    
+                                   
+                                </th>
+                            </>
+
+                        )
+                    })
+                }
+            </tr>
+            }
         </thead>
 
 

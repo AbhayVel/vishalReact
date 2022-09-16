@@ -6,8 +6,6 @@ import Topic from '../topic/Topic';
 
 
 const BasePage = () => {
-
-    debugger;
     return (
         <div className="wrapper ">
             <SideBar />
