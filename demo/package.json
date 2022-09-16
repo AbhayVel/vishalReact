@@ -17,10 +17,9 @@
     "web-vitals": "^2.1.4",
     "react-router-dom": "^6.3.0",
     "@types/react-router-dom": "5.3.3"
-
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start --port 8000",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
