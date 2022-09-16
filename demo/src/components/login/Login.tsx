@@ -1,15 +1,11 @@
-import React from 'react';
-import SideBar from '../sideBar/SideBar';
+const Login = () => {
 
 
-const Login = () => {   
-   
-    
-    return (        
-            <div className="main-panel">
-              
-              I am in login page
-            </div>
+  return (
+    <div className="main-panel">
+
+      I am in login page
+    </div>
   );
 }
 
