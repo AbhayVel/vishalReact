@@ -1,5 +1,6 @@
 
 
+
 const data = { key: 1, name: "abhay"}
 //const val1 = data[0];
 //const val2 = data[1];
