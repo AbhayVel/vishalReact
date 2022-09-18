@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React from 'react';
 import './App.css';
 import './components/home/Home.tsx'
 import './assets/css/bootstrap.min.css';
@@ -14,26 +14,9 @@ import {
   Route,
 } from 'react-router-dom'
 import SideBar from './components/sideBar/SideBar';
-function App() {
 
-  let [count, setCount] = useState(0);
-  const btnClick = () => {
-    setCount(count + 10)
-  };
-
-  let [page, setPage] = useState("Topic");
-  const showPageVisibilty = (eve: any) => {
-    debugger;
-    setPage(eve.target.getAttribute("data-name"));
-  }
+const App = () => {
   return (
-    // <div>
-    //   <Header></Header>  
-
-    //   <Home name={count}></Home>
-    //   <button type="button" onClick={btnClick}>Inside App  - click</button>  
-
-    // </div>
     <BasePage>
       <BrowserRouter>
         <SideBar />

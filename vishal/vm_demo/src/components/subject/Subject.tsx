@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from "react";
 import Footer from "../footer/Footer";
 import SideBar from "../sideBar/SideBar";

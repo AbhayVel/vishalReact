@@ -1,3 +1,4 @@
+import React from 'react';
 
 export interface TableHeader {
     columnId: string,

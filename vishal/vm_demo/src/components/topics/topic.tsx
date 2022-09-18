@@ -1,28 +1,30 @@
 import { useState } from "react";
+import React from 'react'
 import { visitEachChild } from "typescript";
 import GridHeader, { GridHeaderPragment, TableHeader } from "../../library/components/gridHeader/GridHeader";
 import Footer from "../footer/Footer";
 import SideBar from "../sideBar/SideBar";
+import CityMaster from "../../library/components/cityMaster/CityMaster";
 
 
 interface Student {
   id: number;
   firstName: string;
   lastName: string;
-  city: string;
+  cityCode: number;
   contactNo: string;
 }
-
 
 const CASE_SENSETIVE_STRING = "CaseSensitiveString";
 const SORT_ASC = 1;
 const SORT_DESC = -1;
 const Topic = (props: any) => {
 
-  let tableData: Student[] = [{ id: 101, firstName: "Vishal", lastName: "Moharikar", city: "Pune", contactNo: "9503269990" },
-  { id: 102, firstName: "Ranjan", lastName: "Moharikar", city: "Pune", contactNo: "9503269991" },
-  { id: 103, firstName: "Shashank", lastName: "Moharikar", city: "Pune", contactNo: "9503269992" },
-  { id: 103, firstName: "sharduli", lastName: "Kulkarni", city: "Pune", contactNo: "9503269992" }];
+
+  let tableData: Student[] = [{ id: 101, firstName: "Vishal", lastName: "Moharikar", cityCode: 101, contactNo: "9503269990" },
+  { id: 102, firstName: "Ranjan", lastName: "Moharikar", cityCode: 102, contactNo: "9503269991" },
+  { id: 103, firstName: "Shashank", lastName: "Moharikar", cityCode: 103, contactNo: "9503269992" },
+  { id: 104, firstName: "sharduli", lastName: "Kulkarni", cityCode: 104, contactNo: "9503269992" }];
 
   let tableHeader: TableHeader[] = [{ columnId: "id", caption: "ID", allowSorting: true, customCaption: "", image: "" },
   { columnId: "firstName", caption: "First Name", allowSorting: true, columnType: CASE_SENSETIVE_STRING },
@@ -144,7 +146,7 @@ const Topic = (props: any) => {
                                 <td>{e.id}</td>
                                 <td>{e.firstName}</td>
                                 <td>{e.lastName}</td>
-                                <td>{e.city}</td>
+                                <td><CityMaster id={e.id} defaultValue='na' /></td>
                                 <td>{e.contactNo}</td>
                               </tr>
                             )

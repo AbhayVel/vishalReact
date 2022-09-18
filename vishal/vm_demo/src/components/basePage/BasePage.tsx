@@ -1,4 +1,4 @@
-import SideBar from "../sideBar/SideBar";
+import React from 'react'
 
 const BasePage = (props: any) => {
 
