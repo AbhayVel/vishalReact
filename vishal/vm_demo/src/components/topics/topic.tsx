@@ -1,7 +1,7 @@
 import { useState } from "react";
 import React from 'react'
 import { visitEachChild } from "typescript";
-import GridHeader, { GridHeaderPragment, TableHeader } from "../../library/components/gridHeader/GridHeader";
+import GridHeader, { GridHeaderFragment as GridHeaderFragment, TableHeader } from "../../library/components/gridHeader/GridHeader";
 import Footer from "../footer/Footer";
 import SideBar from "../sideBar/SideBar";
 import CityMaster from "../../library/components/cityMaster/CityMaster";
@@ -18,8 +18,10 @@ interface Student {
 const CASE_SENSETIVE_STRING = "CaseSensitiveString";
 const SORT_ASC = 1;
 const SORT_DESC = -1;
+
 const Topic = (props: any) => {
 
+  const logo = "/img/phone.png";
 
   let tableData: Student[] = [{ id: 101, firstName: "Vishal", lastName: "Moharikar", cityCode: 101, contactNo: "9503269990" },
   { id: 102, firstName: "Ranjan", lastName: "Moharikar", cityCode: 102, contactNo: "9503269991" },
@@ -27,7 +29,7 @@ const Topic = (props: any) => {
   { id: 104, firstName: "sharduli", lastName: "Kulkarni", cityCode: 104, contactNo: "9503269992" }];
 
   let tableHeader: TableHeader[] = [{ columnId: "id", caption: "ID", allowSorting: true, customCaption: "", image: "" },
-  { columnId: "firstName", caption: "First Name", allowSorting: true, columnType: CASE_SENSETIVE_STRING },
+  { columnId: "firstName", caption: "First Name", allowSorting: true, columnType: CASE_SENSETIVE_STRING, filterEnabled: true },
   { columnId: "lastName", caption: "Last Name", allowSorting: true, customCaption: "", image: "" },
   { columnId: "city", caption: "City", allowSorting: true },
   { columnId: "contactNo", caption: "Contact No", allowSorting: false, customCaption: "CUSTOM_CAPTION" }];
@@ -128,17 +130,17 @@ const Topic = (props: any) => {
                   <div className="table-responsive">
                     <table className="table">
                       <GridHeader tableHeader={tableHeader} tableConfig={tableConfig} setTableConfig={setTableConfig} >
-                        <GridHeaderPragment forColumn="test">
+                        <GridHeaderFragment forColumn="test">
                           <div className="logo-image-small">
-                            <img src="../../assets/img/logo-small.png" />
+                            <img style={{ height: "1rem" }} src={logo} alt="logo" />
                           </div>
-                        </GridHeaderPragment>
-                        <GridHeaderPragment>
+                        </GridHeaderFragment>
+                        <GridHeaderFragment>
                           <div>Moharikar</div>
-                        </GridHeaderPragment>
+                        </GridHeaderFragment>
                       </GridHeader>
-                      <tbody>
 
+                      <tbody>
                         {
                           tableConfig.data.map((e: Student) => {
                             return (

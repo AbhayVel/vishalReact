@@ -6,11 +6,13 @@ export interface TableHeader {
     allowSorting: boolean,
     columnType?: string,
     customCaption?: String,
-    image?: any
+    image?: any,
+    filterEnabled?: boolean;
+
 }
 const CASE_SENSETIVE_STRING = "CaseSensitiveString";
 
-export const GridHeaderPragment = (props: any) => {
+export const GridHeaderFragment = (props: any) => {
     const { name } = props;
     return (
         <>
@@ -18,18 +20,19 @@ export const GridHeaderPragment = (props: any) => {
     );
 }
 const GridHeader = (props: any) => {
+
+    const filterIco = "/img/filter.png";
+
     const { tableHeader, tableConfig, setTableConfig, children } = props;
 
     const getChild = (header: TableHeader) => {
         if (header.customCaption) {
-            debugger;
             return (children[0].props.children)
         } else {
             return header.caption
         }
     }
     const columnHeaderClick = (header: TableHeader) => {
-        debugger;
         if (!header.allowSorting) {
             return;
         }
@@ -46,19 +49,49 @@ const GridHeader = (props: any) => {
         setTableConfig({ data: [...tableConfig.data], currentSort: currentSort });
     }
     return (
-        <thead className=" text-primary">
-            {
-                tableHeader.map((e: TableHeader) => {
-                    return (
-                        <th onClick={() => {
-                            columnHeaderClick(e);
-                        }}>
-                            {getChild(e)}
-                        </th>
-                    )
-                })
-            }
-        </thead>
+        <>
+            <thead className=" text-primary">
+                {
+                    tableHeader.map((e: TableHeader) => {
+                        return (
+                            <th onClick={(eve) => {
+                                columnHeaderClick(e)
+                                //  eve?.preventDefault();
+                            }}>
+                                {getChild(e)}
+                                {(e.filterEnabled) && <img style={{ height: "0.833rem" }} src={filterIco} alt="filter"
+                                    onClick={() => {
+                                        alert("filterClicked");
+                                    }}
+                                />}
+
+
+
+                            </th>
+
+                        )
+                    })
+                }
+            </thead>
+            <thead className=" text-primary">
+                {
+                    tableHeader.map((e: TableHeader) => {
+                        if (e.filterEnabled) {
+                            console.log(e.caption);
+                            return (
+                                <th >
+                                    <input type="text" placeholder={e.caption} />
+                                </th>
+                            )
+                        } else {
+                            <th></th>
+                        }
+
+                    })
+                }
+            </thead>
+
+        </>
     );
 }
 
