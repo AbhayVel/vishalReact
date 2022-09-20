@@ -21,6 +21,15 @@ const Topic = () => {
         }
     ]
 
+    const filterConfig = {
+        idGte: '',
+        idLte: '',
+        type:'',
+        answer:'',
+        question:''
+
+
+    }
 
 
     const data = [
@@ -97,6 +106,7 @@ const Topic = () => {
 
     ]
 
+    
     const tableConfig = {
      isFilter: true,
      columnConfig:   [
@@ -109,13 +119,13 @@ const Topic = () => {
              className: '',
              filter: [{
                  fid: 1,
-                 value: '',
-                 columnType: "num"
+                 columnName: 'idGte',
+                 columnType: "GteNum"
              },
                  {
                      fid: 2,
-                     value: '',
-                     columnType: "num"
+                     columnName: 'idLte',
+                     columnType: "LteNum"
                  }
 
 
@@ -129,6 +139,12 @@ const Topic = () => {
             displayName: "Subject",
             isSortable: true,
             className: '',
+            filter: [{
+                fid: 12,
+                columnName: 'subjectId',
+                columnType: "num"
+            }
+            ],
             customSort: (a: any, b: any, orderBy: any) => {
                 const subjectIdNameA = getValue(subjectMaster, "subjectId", "subjectName", a.subjectId, "");
                 const subjectIdNameB = getValue(subjectMaster, "subjectId", "subjectName", b.subjectId, "");
@@ -145,8 +161,8 @@ const Topic = () => {
             className: '',
             filter: [{
                 fid: 3,
-                value: '',
-                columnType: "num"
+                columnName: 'type',
+                columnType: "cistr"
             }
             ]
         },
@@ -160,8 +176,8 @@ const Topic = () => {
             className: 'text-right',
             filter: [{
                 fid: 4,
-                value: '',
-                columnType: "num"
+                columnName: 'question',
+                columnType: "cistr"
             }
             ]
         },
@@ -175,8 +191,8 @@ const Topic = () => {
             className: 'text-right',
             filter: [{
                 fid: 5,
-                value: '',
-                columnType: "num"
+                columnName: 'answer',
+                columnType: "cistr"
             }
             ]
         }
@@ -191,7 +207,7 @@ const Topic = () => {
 
     const path = "/assets/img/logo-small.png";
     // const [config, setConfig] = useState({ data: data, orderBy: "asc"   } );
-    const [config, setConfig] = useState({ data, orderBy: "asc" });
+    const [config, setConfig] = useState({ data, orderBy: "asc", filterConfig: filterConfig });
     return (
         <div className="main-panel">
 
@@ -272,7 +288,7 @@ const Topic = () => {
                                 <div className="table-responsive">
                                     <table className="table">
 
-                                        <QdnThead tableConfig={tableConfig} config={config} setConfig={setConfig} >
+                                        <QdnThead tableConfig={tableConfig} config={config} setConfig={setConfig} data={data} >
                                             <QdnTh name="question">
                                                 <p className="red"> data Question</p>
                                             </QdnTh>
@@ -290,7 +306,7 @@ const Topic = () => {
                                                                 {e.id}
                                                             </td>
                                                             <td>
-                                                                <SubjectMaster id={e.id} defaultValue='na' />
+                                                                <SubjectMaster id={e.subjectId} defaultValue='na' />
                                                             </td>
                                                             <td>
                                                                 {e.type}

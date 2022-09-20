@@ -28,11 +28,49 @@ const GetChild = (props: any) => {
 
 const QdnThead = (props: any) => {   //pure function    , @Input 
 
-    const { tableConfig, config, sortData, setConfig, children } = props;
+    const { tableConfig, config, sortData, setConfig, children, data } = props;
 
 
-    const filterDataThead = (columnName: any, value: any, type: any, te: any, f: any) => {
-        console.log(value);
+    const filterDataThead = (columnName: any, value: any, type: any, tableElement: any, filter: any) => {
+        debugger;
+        const filterConfig = config.filterConfig;
+        filterConfig[filter.columnName] = value;
+
+        let rows = data;
+
+        for (let i = 0; i < tableConfig.columnConfig.length; i = i + 1) {
+            const columnConfig = tableConfig.columnConfig[i];
+            if (columnConfig.filter) {
+                const lFilter = columnConfig.filter;
+                for (let j = 0; j < lFilter.length; j = j + 1) {
+                    console.log(`${columnConfig.columnName} - ${lFilter[j].columnType}  -  ${lFilter[j].columnName}  = ${filterConfig[lFilter[j].columnName]}`)
+
+                    rows = rows.filter((e: any) => {
+                        if (filterConfig[lFilter[j].columnName] == '' || filterConfig[lFilter[j].columnName] == undefined || filterConfig[lFilter[j].columnName] == null) {
+                            return true;
+						}
+
+                        if (lFilter[j].columnType === "GteNum") {
+                            return e[columnConfig.columnName] >= +filterConfig[lFilter[j].columnName];
+                        } else if (lFilter[j].columnType === "LteNum") {
+                            return e[columnConfig.columnName] <= +filterConfig[lFilter[j].columnName];
+                        } else if (lFilter[j].columnType === "cistr") {
+                            if (typeof e[columnConfig.columnName] == "string" && typeof filterConfig[lFilter[j].columnName]=="string") {
+                                   return e[columnConfig.columnName].toLowerCase().indexOf(filterConfig[lFilter[j].columnName].toLowerCase())>-1;
+                            }
+                        }
+                        return e[columnConfig.columnName] == filterConfig[lFilter[j].columnName] ;
+
+					})
+
+                   // console.log(lFilter[j].columnName +" = "  + filterConfig[lFilter[j].columnName])
+				}
+			}
+		}
+
+
+       
+        setConfig({ data: [...rows], orderBy: "desc", filterConfig: { ...config.filterConfig } });
     }
 
 
