@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import logo from '../../assets/img/logo-small.png';
+import QdnTable, { QdnTd, TdContext } from '../../library/thead/QdnTable';
 import QdnThead, { QdnTh } from '../../library/thead/Thead';
 import SubjectMaster from '../../master-component/subject/SubjectMaster';
 import { getValue } from '../../util/Util';
@@ -63,14 +64,14 @@ const Topic = () => {
         },
         {
             id: 5,
-            subjectId: 3,
+            subjectId: 1,
             type: "Topic",
             question: "What is Angular",
             answer: "Angular is a UI framework for javascript."
         },
         {
             id: 6,
-            subjectId: 3,
+            subjectId: 2,
             type: "Topic",
             question: "What is Angular",
             answer: "Angular is a UI framework for javascript."
@@ -98,10 +99,14 @@ const Topic = () => {
         },
         {
             id: 10,
-            subjectId: 3,
+            subjectId: 4,
             type: "Topic",
             question: "What is Angular",
-            answer: "Angular is a UI framework for javascript."
+            answer: "Angular is a UI framework for javascript.",
+            answer2: "Angular is a UI framework for javascript." ,
+             answer3: "Angular is a UI framework for javascript."  ,
+              answer4: "Angular is a UI framework for javascript." ,
+               answer5: "Angular is a UI framework for javascript." ,
         },
 
     ]
@@ -131,10 +136,13 @@ const Topic = () => {
 
             ]
 
-        },
+         },
+
+
         {
             id: 2,
             columnName: "subjectId",
+            customDisplayName: "subjectId",
             columnType: "num",
             displayName: "Subject",
             isSortable: true,
@@ -196,6 +204,21 @@ const Topic = () => {
             }
             ]
         }
+
+        ,{
+             id: 10,
+             columnName: "id",
+            columnType: "num",
+            customDisplayName: "dummy",
+             displayName: "Dummy  Header",
+             isSortable: true,
+             className: '',
+             filter: [
+
+
+             ]
+
+         },
 
         ]
         }
@@ -286,48 +309,43 @@ const Topic = () => {
                                 <br />
                                 Subject  <input type="text" />
                                 <div className="table-responsive">
-                                    <table className="table">
+                                    <QdnTable tableConfig={tableConfig} config={config} setConfig={setConfig} data={data}>
+                                        <QdnTh name="question">
+                                            <p className="red"> data Question</p>
+                                        </QdnTh>
+                                        <QdnTh name="answer">
+                                            <span> data Answer</span>
+                                        </QdnTh>
+                                        <QdnTd name="subjectId">
+                                            <TdContext.Consumer>
+                                                {
+                                                    (value: any) => {
+                                                        return (
+                                                            <div>
+                                                                <SubjectMaster  id={value.subjectId } defaultValue="na" />
+                                                            </div>
+                                                            )
+													}
+												}
+                                            </TdContext.Consumer>
+                                        </QdnTd>
 
-                                        <QdnThead tableConfig={tableConfig} config={config} setConfig={setConfig} data={data} >
-                                            <QdnTh name="question">
-                                                <p className="red"> data Question</p>
-                                            </QdnTh>
-                                            <QdnTh name="answer">
-                                                <span> data Answer</span>
-                                            </QdnTh>
-                                        </QdnThead>                                        
-                                        <tbody>
+                                        <QdnTd name="dummy">
+                                            <TdContext.Consumer>
+                                                {
+                                                    (value: any) => {
+                                                        return (
+                                                            <div>
+                                                                 
+                                                            </div>
+                                                        )
+                                                    }
+                                                }
+                                            </TdContext.Consumer>
+                                        </QdnTd>
+                                     </QdnTable>
 
-                                            {
-                                                config.data.map((e: any) => {
-                                                    return (
-                                                        <tr key={e.id}>
-                                                            <td>
-                                                                {e.id}
-                                                            </td>
-                                                            <td>
-                                                                <SubjectMaster id={e.subjectId} defaultValue='na' />
-                                                            </td>
-                                                            <td>
-                                                                {e.type}
-                                                            </td>
-                                                            <td className="text-right">
-                                                                {e.question}
-                                                            </td>
-                                                            <td className="text-right">
-                                                                {e.answer}
-                                                            </td>
-                                                        </tr>
-
-                                                    )
-                                                })
-                                            }
-
-
-
-
-                                        </tbody>
-                                    </table>
+                                      
                                     <img src={logo} alt="logo" />
 
                                     <img src={path} alt="logo" />
