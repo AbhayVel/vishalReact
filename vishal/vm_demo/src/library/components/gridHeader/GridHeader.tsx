@@ -54,14 +54,15 @@ const GridHeader = (props: any) => {
                 {
                     tableHeader.map((e: TableHeader) => {
                         return (
-                            <th onClick={(eve) => {
-                                columnHeaderClick(e)
-                                //  eve?.preventDefault();
-                            }}>
-                                {getChild(e)}
+                            <th >
+                                <a onClick={(eve) => {
+                                    columnHeaderClick(e)
+                                    // eve?.preventDefault();
+                                }}>   {getChild(e)}  </a>
                                 {(e.filterEnabled) && <img style={{ height: "0.833rem" }} src={filterIco} alt="filter"
-                                    onClick={() => {
+                                    onClick={(eve: any) => {
                                         alert("filterClicked");
+                                        eve.stopPropagation();
                                     }}
                                 />}
 
