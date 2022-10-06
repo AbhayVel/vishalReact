@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import logo from '../../assets/img/logo-small.png';
 import QdnTable, { QdnTd, TdContext } from '../../library/thead/QdnTable';
 import QdnThead, { QdnTh } from '../../library/thead/Thead';
@@ -28,88 +28,8 @@ const Topic = () => {
         type:'',
         answer:'',
         question:''
-
-
     }
-
-
-    const data = [
-        {
-            id: 1,
-            subjectId: 1,
-            type: "Question",
-            question: "What is react",
-            answer: "React is a UI rendring library available for javascript."
-        },
-        {
-            id: 2,
-            subjectId: 2,
-            type: "Question",
-            question: "What is Angular",
-            answer: "Angular is a UI framework for javascript."
-        },
-        {
-            id: 3,
-            subjectId: 3,
-            type: "Topic",
-            question: "What is Angular",
-            answer: "Angular is a UI framework for javascript."
-        },
-        {
-            id: 4,
-            subjectId: 3,
-            type: "Topic",
-            question: "What is Angular",
-            answer: "Angular is a UI framework for javascript."
-        },
-        {
-            id: 5,
-            subjectId: 1,
-            type: "Topic",
-            question: "What is Angular",
-            answer: "Angular is a UI framework for javascript."
-        },
-        {
-            id: 6,
-            subjectId: 2,
-            type: "Topic",
-            question: "What is Angular",
-            answer: "Angular is a UI framework for javascript."
-        },
-        {
-            id: 7,
-            subjectId: 3,
-            type: "Topic",
-            question: "What is Angular",
-            answer: "Angular is a UI framework for javascript."
-        },
-        {
-            id: 8,
-            subjectId: 3,
-            type: "Topic",
-            question: "What is Angular",
-            answer: "Angular is a UI framework for javascript."
-        },
-        {
-            id: 9,
-            subjectId: 3,
-            type: "Topic",
-            question: "What is Angular",
-            answer: "Angular is a UI framework for javascript."
-        },
-        {
-            id: 10,
-            subjectId: 4,
-            type: "Topic",
-            question: "What is Angular",
-            answer: "Angular is a UI framework for javascript.",
-            answer2: "Angular is a UI framework for javascript." ,
-             answer3: "Angular is a UI framework for javascript."  ,
-              answer4: "Angular is a UI framework for javascript." ,
-               answer5: "Angular is a UI framework for javascript." ,
-        },
-
-    ]
+    let data: Array<any> = [];
 
     
     const tableConfig = {
@@ -119,7 +39,9 @@ const Topic = () => {
             id: 1,
             columnName: "id",
             columnType: "num",
-            displayName: "Id",
+             displayName: "Id",
+             isDefaultSort: true,
+             orderBy: "asc",
             isSortable: true,
              className: '',
              filter: [{
@@ -137,8 +59,6 @@ const Topic = () => {
             ]
 
          },
-
-
         {
             id: 2,
             columnName: "subjectId",
@@ -146,11 +66,17 @@ const Topic = () => {
             columnType: "num",
             displayName: "Subject",
             isSortable: true,
+            isDefaultSort: false,
             className: '',
             filter: [{
                 fid: 12,
                 columnName: 'subjectId',
-                columnType: "num"
+                columnType: "num",
+                customFilter: (e: any,value: any ) => {
+                    const subjectIdNameA = getValue(subjectMaster, "subjectId", "subjectName", e.subjectId, "");
+
+                    return subjectIdNameA.toLowerCase().indexOf(value.toLowerCase()) > -1;
+				}
             }
             ],
             customSort: (a: any, b: any, orderBy: any) => {
@@ -231,6 +157,95 @@ const Topic = () => {
     const path = "/assets/img/logo-small.png";
     // const [config, setConfig] = useState({ data: data, orderBy: "asc"   } );
     const [config, setConfig] = useState({ data, orderBy: "asc", filterConfig: filterConfig });
+
+    useEffect(() => {
+        setTimeout(() => {
+           // debugger;
+            data = [
+                {
+                    id: 2,
+                    subjectId: 1,
+                    type: "Question",
+                    question: "What is react",
+                    answer: "React is a UI rendring library available for javascript."
+                },
+                {
+                    id: 1,
+                    subjectId: 2,
+                    type: "Question",
+                    question: "What is Angular",
+                    answer: "Angular is a UI framework for javascript."
+                },
+                {
+                    id: 3,
+                    subjectId: 3,
+                    type: "Topic",
+                    question: "What is Angular",
+                    answer: "Angular is a UI framework for javascript."
+                },
+                {
+                    id: 4,
+                    subjectId: 3,
+                    type: "Topic",
+                    question: "What is Angular",
+                    answer: "Angular is a UI framework for javascript."
+                },
+                {
+                    id: 5,
+                    subjectId: 1,
+                    type: "Topic",
+                    question: "What is Angular",
+                    answer: "Angular is a UI framework for javascript."
+                },
+                {
+                    id: 6,
+                    subjectId: 2,
+                    type: "Topic",
+                    question: "What is Angular",
+                    answer: "Angular is a UI framework for javascript."
+                },
+                {
+                    id: 7,
+                    subjectId: 3,
+                    type: "Topic",
+                    question: "What is Angular",
+                    answer: "Angular is a UI framework for javascript."
+                },
+                {
+                    id: 8,
+                    subjectId: 3,
+                    type: "Topic",
+                    question: "What is Angular",
+                    answer: "Angular is a UI framework for javascript."
+                },
+                {
+                    id: 9,
+                    subjectId: 3,
+                    type: "Topic",
+                    question: "What is Angular",
+                    answer: "Angular is a UI framework for javascript."
+                },
+                {
+                    id: 10,
+                    subjectId: 4,
+                    type: "Topic",
+                    question: "What is Angular",
+                    answer: "Angular is a UI framework for javascript.",
+                    answer2: "Angular is a UI framework for javascript.",
+                    answer3: "Angular is a UI framework for javascript.",
+                    answer4: "Angular is a UI framework for javascript.",
+                    answer5: "Angular is a UI framework for javascript.",
+                },
+
+            ];
+            setConfig({ data, orderBy: "asc", filterConfig: filterConfig })
+         }, 5000);
+
+        return () => {
+
+		}
+	},[])
+
     return (
         <div className="main-panel">
 
