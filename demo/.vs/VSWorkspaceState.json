@@ -2,15 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\assets",
-    "\\src\\components\\login",
     "\\src\\components\\role",
     "\\src\\components\\sideBar",
     "\\src\\components\\topic",
     "\\src\\components\\unAuthBasePage",
     "\\src\\library",
-    "\\src\\library\\thead"
+    "\\src\\library\\thead",
+    "\\src\\master-component",
+    "\\src\\master-component\\subject"
   ],
-  "SelectedNode": "\\src\\App.css",
+  "SelectedNode": "\\src\\master-component\\subject\\SubjectMaster.tsx",
   "PreviewInSolutionExplorer": false
 }
