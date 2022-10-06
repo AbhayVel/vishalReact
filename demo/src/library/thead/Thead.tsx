@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export const QdnTh = (props: any) => {
     const { children } = props;
@@ -30,13 +30,21 @@ const QdnThead = (props: any) => {   //pure function    , @Input
 
     const { tableConfig, config, sortData, setConfig, children, data } = props;
 
+    useEffect(() => {
+        for (let i = 0; i < tableConfig.columnConfig.length; i = i + 1) {
+            if (tableConfig.columnConfig[i].isDefaultSort) {
+                const sortConfig = tableConfig.columnConfig[i];
+                sortDataThead(sortConfig.columnName, sortConfig.orderBy, sortConfig.columnType, null);
+                break;
+            }
+		}
+       
+    }, [])
 
     const filterDataThead = (columnName: any, value: any, type: any, tableElement: any, filter: any) => {
-        debugger;
         const filterConfig = config.filterConfig;
         filterConfig[filter.columnName] = value;
-
-        let rows = data;
+         let rows = data;
 
         for (let i = 0; i < tableConfig.columnConfig.length; i = i + 1) {
             const columnConfig = tableConfig.columnConfig[i];
@@ -48,7 +56,11 @@ const QdnThead = (props: any) => {   //pure function    , @Input
                     rows = rows.filter((e: any) => {
                         if (filterConfig[lFilter[j].columnName] == '' || filterConfig[lFilter[j].columnName] == undefined || filterConfig[lFilter[j].columnName] == null) {
                             return true;
-						}
+                        }
+
+                        if (lFilter[j].customFilter) {
+                            return lFilter[j].customFilter(e,filterConfig[lFilter[j].columnName]);
+                        }
 
                         if (lFilter[j].columnType === "GteNum") {
                             return e[columnConfig.columnName] >= +filterConfig[lFilter[j].columnName];
@@ -72,11 +84,9 @@ const QdnThead = (props: any) => {   //pure function    , @Input
        
         setConfig({ data: [...rows], orderBy: "desc", filterConfig: { ...config.filterConfig } });
     }
-
-
     const sortDataThead = (columnName: any, orderBy: any, type: any, te: any) => {
 
-        if (!te.isSortable) {
+        if (te && !te.isSortable) {
             return;
         }
         if (sortData) {
@@ -92,7 +102,7 @@ const QdnThead = (props: any) => {   //pure function    , @Input
 
 
             config.data.sort((a: any, b: any) => {              
-                if (te.customSort) {
+                if (te && te.customSort) {
                     return te.customSort(a, b, sortOption);
                 }
                 if (type === 'cistr') {
