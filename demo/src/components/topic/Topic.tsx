@@ -159,6 +159,10 @@ const Topic = () => {
     const [config, setConfig] = useState({ data, orderBy: "asc", filterConfig: filterConfig });
 
     useEffect(() => {
+        //api call  1
+        //api call 2
+        //Merge 
+
         setTimeout(() => {
            // debugger;
             data = [
