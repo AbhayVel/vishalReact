@@ -1,11 +1,13 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src",
+    "\\NodeExamples",
+    "\\src\\components",
+    "\\src\\components\\topic",
     "\\src\\library",
     "\\src\\library\\thead",
-    "\\src\\master-component",
     "\\src\\master-component\\subject"
   ],
+  "SelectedNode": "\\NodeExamples",
   "PreviewInSolutionExplorer": false
 }
